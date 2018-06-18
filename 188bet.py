@@ -19,8 +19,8 @@ class OneEightEightSpider():
         self.start_urls = ["https://www.mot88bet.com/vi-vn/world-cup#06" + str(i) for i in range(18, 19)]
 
         # Make chrome invisible
-        # display = Display(visible=0, size=(800, 600))
-        # display.start()
+        display = Display(visible=0, size=(800, 600))
+        display.start()
 
         self.driver = webdriver.Chrome()
         self.logger = logging.getLogger(self.name)
