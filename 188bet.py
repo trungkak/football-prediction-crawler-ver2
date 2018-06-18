@@ -4,11 +4,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from pyvirtualdisplay import Display
+# from pyvirtualdisplay import Display
 import logging
 import json
 import time
 import random
+import os
 
 
 class OneEightEightSpider():
@@ -19,10 +20,10 @@ class OneEightEightSpider():
         self.start_urls = ["https://www.mot88bet.com/vi-vn/world-cup#06" + str(i) for i in range(18, 19)]
 
         # Make chrome invisible
-        display = Display(visible=0, size=(800, 600))
-        display.start()
+        # display = Display(visible=0, size=(800, 600))
+        # display.start()
 
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(executable_path=os.path.abspath('chromedriver'))
         self.logger = logging.getLogger(self.name)
 
         self.result_file = open("188.json", 'w')
@@ -39,10 +40,11 @@ class OneEightEightSpider():
             print(url)
             try:
                 self.driver.get(url)
-                webdriver_wait = WebDriverWait(self.driver, 5).until(
-                    EC.presence_of_element_located((By.CLASS_NAME, "bet-types-table"))
-                )
-                self.logger.info(webdriver_wait)
+                time.sleep(2)
+                # webdriver_wait = WebDriverWait(self.driver, 5).until(
+                #     EC.presence_of_element_located((By.CLASS_NAME, "bet-types-table"))
+                # )
+                # self.logger.info(webdriver_wait)
             except Exception:
                 self.logger.info('EXCEPTION')
                 # self.driver.quit()
